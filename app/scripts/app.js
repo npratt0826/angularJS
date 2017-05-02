@@ -1,7 +1,7 @@
 (function() {
   function config($stateProvider, $locationProvider) {
     $locationProvider
-      .html5mode({
+      .html5Mode({
         enabled: true,
         requireBase: false
       });
@@ -19,8 +19,9 @@
           url: '/collection',
           templateUrl: '/templates/collection.html'
         });
-  }
+  };
+
   angular
-    .modular('blocJams', ['ui.router'])
+    .module('blocJams', ['ui.router'])
     .config(config);
 })();
