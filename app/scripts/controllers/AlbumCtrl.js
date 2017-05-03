@@ -1,9 +1,11 @@
 (function() {
      function AlbumCtrl() {
-       this.albumData = angular.copy(albumPicasso);
+       this.albumData = [];
+       this.albumData =angular.copy(albumPicasso);
        this.songs =[];
-       for(var i=0; i < this.albumData.songs.length; i++){
-          this.songs.push(albumData.songs[i]);
+       var songsLength = this.albumData.songs.length;
+       for(var i=0; i < songsLength; i++){
+          this.songs.push(this.albumData.songs[i]);
        }
      }
 
