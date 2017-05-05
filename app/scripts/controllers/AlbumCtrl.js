@@ -1,7 +1,8 @@
 (function() {
      function AlbumCtrl() {
-       this.albumData = [];
-       this.albumData =angular.copy(albumPicasso);
+      //  this.albumData = [];
+       this.albumData = angular.copy(albumPicasso);
+       console.log(this.albumData);
        this.songs =[];
        var songsLength = this.albumData.songs.length;
        for(var i=0; i < songsLength; i++){
