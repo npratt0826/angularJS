@@ -39,11 +39,7 @@
         Fixtures.getCollection = function(numberOfAlbums) {
             var albums = [];
             for (var i=0; i < numberOfAlbums; i++) {
-<<<<<<< HEAD
-                albums.push(angular.copy(albumPicasso));
-=======
                 albums.push(albumPicasso);
->>>>>>> checkpoint-6-services
             }
             return albums;
         };
