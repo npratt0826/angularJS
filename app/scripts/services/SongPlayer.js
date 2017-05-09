@@ -30,16 +30,28 @@
             currentSong = song;
           };
 
+          /**
+          *@function playSong
+          * @desc Plays song if currentSong is not the song clicked
+          * @param {object} song
+          */
+
+        var playSong = function(song) {
+            currentBuzzObject.play()
+            song.playing = true;
+        };
+
          SongPlayer.play = function (song) {
            if (currentSong !== song) {
 
              setSong(song);
+             playSong(song);
 
-             currentBuzzObject.play()
-             song.playing = true;
+            //  currentBuzzObject.play()
+            //  song.playing = true;
            } else if (currentSong === song) {
              if(currentBuzzObject.isPaused()){
-               currentBuzzObject.play();
+               playSong(song);
              }
            }
          };
