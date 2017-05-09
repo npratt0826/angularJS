@@ -32,17 +32,7 @@
 
          SongPlayer.play = function (song) {
            if (currentSong !== song) {
-             if (currentBuzzObject) {
-               currentBuzzObject.stop();
-               currentSong.playing = null
-             }
 
-             currentBuzzObject = new buzz.sound(song.audioUrl, {
-               formats: ['mp3'],
-               preload: true
-             });
-
-             currentSong = song;
              setSong(song);
 
              currentBuzzObject.play()
