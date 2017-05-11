@@ -1,5 +1,5 @@
 (function() {
-    function SongPlayer(Fixtures) {
+    function SongPlayer($rootScope, Fixtures) {
          var SongPlayer = {};
 
          /**
@@ -30,6 +30,12 @@
                 preload: true
             });
 
+            currentBuzzObject.bind('timeupdate', function(){
+              $rootScope.$apply(function() {
+                SongPlayer.currentTime = currentBuzzObject.getTime();
+              });
+            });
+
             SongPlayer.currentSong = song;
           };
 
@@ -58,7 +64,7 @@
         * @function getSongIndex
         * @desc uses currentAlbum to find index # of song
         * @param {Object} song
-        * @type number
+        * @type {number}
         */
         var getSongIndex = function(song) {
           return currentAlbum.songs.indexOf(song);
@@ -71,11 +77,28 @@
         SongPlayer.currentSong = null;
 
         /**
+        * @desc Current playback time (in seconds) of currently playing song
+        * @type {Number}
+        */
+        SongPlayer.currentTime = null;
+
+        /**
+        * @function setCurrentTime
+        * @desc Setcurrent time (in seconds) of currently playing song
+        * @param {number} time
+        */
+
+        SongPlayer.setCurrentTime = function(time) {
+          if(currentBuzzObject) {
+            currentBuzzObject.setTime(time);
+          }
+        };
+
+        /**
         * @function play
         * @desc Play current or new song
         * @param {Object} song
         */
-
         SongPlayer.play = function (song) {
           song = song || SongPlayer.currentSong;
            if (SongPlayer.currentSong !== song) {
@@ -105,7 +128,7 @@
          /**
          * @function SongPlayer.previous
          * @desc finds currentSongIndex of currentSong and subtracts the index by 1
-         * @type number
+         * @type {number}
          */
          SongPlayer.previous = function() {
            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
@@ -124,7 +147,7 @@
          /**
          * @function SongPlayer.next
          * @desc finds currentSongIndex of current song and moves up the index by 1
-         * @type number
+         * @type {number}
          */
         SongPlayer.next = function () {
           var currentSongIndex = getSongIndex(SongPlayer.currentSong);
@@ -144,5 +167,5 @@
 
     angular
         .module('blocJams')
-        .factory('SongPlayer', ['Fixtures', SongPlayer]);
+        .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
