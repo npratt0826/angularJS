@@ -39,6 +39,7 @@
             SongPlayer.currentSong = song;
           };
 
+
           /**
           *@function playSong
           * @desc Plays song if SongPlayer.currentSong is not the song clicked
@@ -82,9 +83,23 @@
         */
         SongPlayer.currentTime = null;
 
+        SongPlayer.currentVolume = 80;
+
+        /**
+        * @function setVolume
+        * @desc sets volume of currently playing song
+        * @type {number}
+        */
+        SongPlayer.setVolume = function(newVolume) {
+          if(currentBuzzObject){
+            currentBuzzObject.setVolume(newVolume);
+            SongPlayer.currentVolume = currentBuzzObject.getVolume();
+          }
+        };
+
         /**
         * @function setCurrentTime
-        * @desc Setcurrent time (in seconds) of currently playing song
+        * @desc Set current time (in seconds) of currently playing song
         * @param {number} time
         */
 
